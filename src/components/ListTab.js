@@ -24,10 +24,12 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
 const items = [
-  {id: 1, title: 'React Native'},
-  {id: 2, title: 'Awesome!'},
-];
+  {id: 1, title: "React native"},
+  {id: 2, title: "Ruby on rails"}
+]
 
 class ListTab extends Component {
 
@@ -47,7 +49,7 @@ class ListTab extends Component {
       <FlatList
         style={styles.container}
         data={this.state.items}
-        renderItem={({item}) => 
+        renderItem={({item}) =>
           <TouchableOpacity onPress={() => this.onPress(item)} style={styles.item}>
             <Text>{item.title}</Text>
           </TouchableOpacity>

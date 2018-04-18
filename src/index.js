@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import configureStore from './configureStore';
 import { Provider } from 'react-redux';
+import  {Text} from "react-native";
 import AppWithNavigationState from './navigators/AppNavigator';
 
 export default class App extends Component {

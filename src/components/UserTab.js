@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
+import {
   StyleSheet,
   View,
   TextInput,
@@ -33,14 +32,14 @@ class UserTab extends Component {
 
   render() {
     const { accessToken, login, logout } = this.props;
-    
+
     return (
       <View style={styles.container}>
         {
           !accessToken
           ?
           <View>
-            <TextInput 
+            <TextInput
               style={styles.input}
               placeholder="What's your name?"
               onChangeText={(name) => this.setState({ name })}/>

@@ -29,14 +29,16 @@ const tabConfig = {
     style: {
       backgroundColor: 'white',
     },
-  },
+  }
 }
+
+// Diseño del tab de la navegacion
 
 export const MainScreen = TabNavigator({
   List: {
-    screen: ListTab, 
-    navigationOptions: { 
-      tabBarLabel: 'LIST', 
+    screen: ListTab,
+    navigationOptions: {
+      tabBarLabel: 'INDEX',
       tabBarIcon: ({focused, tintColor}) => <Icon name={'ios-list-outline'} size={30} color={tintColor}/>
     }
   },
@@ -46,8 +48,11 @@ export const MainScreen = TabNavigator({
       tabBarLabel: 'USER',
       tabBarIcon: ({focused, tintColor}) => <Icon name={'ios-person-outline'} size={30} color={tintColor}/>
     }
-  },
+  }
 }, tabConfig);
+
+
+// Rutas de navegación de la app
 
 export const AppNavigator = StackNavigator({
   Main: {

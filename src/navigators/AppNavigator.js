@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { StatusBar, View, BackHandler } from 'react-native';
 import { addNavigationHelpers, StackNavigator, TabNavigator, NavigationActions } from 'react-navigation';
 
-import ListTab from '../components/ListTab';
-import UserTab from '../components/UserTab';
-import DetailScreen from '../components/DetailScreen';
+import ExploreTab from '../components/MainScreen/ExploreTab';
+import ProfileTab from '../components/MainScreen/ProfileTab';
+import RoomScreen from '../components/RoomScreen';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -35,22 +35,22 @@ const tabConfig = {
 // Diseño del tab de la navegacion
 
 export const MainScreen = TabNavigator({
-  List: {
-    screen: ListTab,
+  Explore: {
+    screen: ExploreTab,
     navigationOptions: {
-      tabBarLabel: 'INDEX',
-      tabBarIcon: ({focused, tintColor}) => <Icon name={'ios-list-outline'} size={30} color={tintColor}/>
+      tabBarLabel: 'EXPLORE',
+      tabBarIcon: ({focused, tintColor}) => <Icon name={'ios-search-outline'} size={30} color={tintColor}/>
     }
   },
-  User: {
-    screen: UserTab,
+
+  Profile: {
+    screen: ProfileTab,
     navigationOptions: {
-      tabBarLabel: 'USER',
+      tabBarLabel: 'PROFILE',
       tabBarIcon: ({focused, tintColor}) => <Icon name={'ios-person-outline'} size={30} color={tintColor}/>
     }
   }
 }, tabConfig);
-
 
 // Rutas de navegación de la app
 
@@ -58,16 +58,17 @@ export const AppNavigator = StackNavigator({
   Main: {
     screen: MainScreen,
     navigationOptions: {
-      title: 'Code4Startup',
+      header: null
     }
   },
-  Detail: {
-    screen: DetailScreen,
-    navigationOptions: {
-      title: 'Code4Startup',
-    }
+  Room: {
+    screen: RoomScreen,
+    navigationOptions: (props) =>({
+      title: props.navigation.state.params.item.title,
+    })
   },
 });
+
 
 class AppWithNavigationState extends Component {
 
@@ -84,6 +85,7 @@ class AppWithNavigationState extends Component {
     if (nav.index === 0) {
       return false;
     }
+
     dispatch(NavigationActions.back());
     return true;
   }

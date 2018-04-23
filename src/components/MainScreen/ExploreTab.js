@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white"
   },
 
-  image:{
+  image: {
     width: Dimensions.get('window').width - 80,
     height: Dimensions.get('window').width *4/7,
-    marginBottom: 15
+    marginBottom: 15,
   },
 
   text: {
@@ -63,7 +63,7 @@ class ExploreTab extends Component {
         data={rooms}
         renderItem={({item}) =>
           <TouchableOpacity onPress={() => this.onPress(item)} style={styles.item}>
-            <Image style={styles.image} source = {{uri: item.image}}/>
+            <Image style={styles.image} source = {{uri: "https://i.ebayimg.com/images/g/7N0AAOSwhqhaK3Qj/s-l960.jpg"}} />
             <Text style= {styles.title}> {`$ ${item.price} ${item.instant ? '' : ''} ${item.title}`} </Text>
             <Text> {`${item.homeType} ${item.bedRoom} bedrooms(s)`}</Text>
           </TouchableOpacity>

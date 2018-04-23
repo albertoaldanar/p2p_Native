@@ -75,9 +75,10 @@ class RoomScreen extends Component {
 
   render() {
     const room = this.props.room;
+    const item = this.props.navigation.state.params.item
     if (!room) return null
 
-    const {bedRoom, bathRoom, accomadate, summary, price} = room
+    const {bedRoom, bathRoom, summary, price} = room
 
     return (
       <View style = {{flex: 1}}>
@@ -92,7 +93,7 @@ class RoomScreen extends Component {
           <View style = {styles.row}>
             <View style = {styles.info}>
               <Icon name = "ios-people-outline" size = {40}/>
-              <Text>{accomadate} guest(s)</Text>
+              <Text> {item.accommodate} guest(s) </Text>
             </View>
 
             <View style = {styles.info}>

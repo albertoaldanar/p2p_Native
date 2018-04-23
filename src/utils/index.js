@@ -12,7 +12,7 @@ export function normalizeRooms(rooms){
       instant: room.instant || "",
       summary: room.summary || "",
       accommodate: room.accommodate || "",
-      bathRoom: room.bathRoom || "",
+      bathRoom: room.bath_room || "",
       unavaliableDates: room.unavaliableDates || "",
 
     }
@@ -26,8 +26,9 @@ export function normalizeRoom(room){
     image: `${HOST}${room.image}` || "",
     homeType: room.home_type || "",
     bedRoom: room.bed_room || "",
-    price: room.price || "",
     summary: room.summary || "",
+    bathRoom: room.bath_room || "",
+    price: room.price || "",
     address: room.address || "",
     host: room.host ? {
         email: room.host.email || "",

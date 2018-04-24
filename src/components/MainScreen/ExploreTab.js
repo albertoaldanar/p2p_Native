@@ -8,7 +8,9 @@ import {
   Text,
   Image,
   Dimensions,
+  View
 } from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
 
 import { navigate } from '../../actions/nav';
 import {getRooms} from "../../actions/room";
@@ -16,6 +18,10 @@ import {getRooms} from "../../actions/room";
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+
+  list: {
     padding: 20,
     backgroundColor: "white"
   },
@@ -28,6 +34,25 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 16,
+  },
+
+  filterButton: {
+    backgroundColor: "#2F868E",
+    flexDirection: "row",
+    padding: 10,
+    borderRadius: 3,
+    alignItems: "center"
+  },
+
+  filterText: {
+    color: "white",
+    fontSize: 16,
+    marginLeft: 15
+  },
+
+  filter: {
+    padding: 25,
+    backgroundColor: "#007B7F"
   },
 
   title: {
@@ -55,11 +80,24 @@ class ExploreTab extends Component {
     this.props.navigate({ routeName: "Room", params: { item: item } });
   }
 
+  onFilterPress(){
+    this.props.navigate({routeName: "Filter"})
+  }
+
   render() {
     const {rooms} = this.props;
     return (
+
+    <View style = {styles.container}>
+      <View style = {styles.filter}>
+        <TouchableOpacity style = {styles.filterButton} onPress = {() => this.onFilterPress()}>
+          <Icon size = {25} name = "ios-search-outline" color = "white"/>
+          <Text style = {styles.filterText}> Anywhere - Anytime</Text>
+        </TouchableOpacity>
+      </View>
+
       <FlatList
-        style={styles.container}
+        style={styles.list}
         data={rooms}
         renderItem={({item}) =>
           <TouchableOpacity onPress={() => this.onPress(item)} style={styles.item}>
@@ -70,6 +108,7 @@ class ExploreTab extends Component {
         }
         keyExtractor={(item, index) => item.id}
       />
+    </View>
     );
   }
 }

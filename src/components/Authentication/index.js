@@ -9,7 +9,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
-
+import {navigate} from "../../actions/nav";
 import { login, logout } from '../../actions/user';
 
 const styles = StyleSheet.create({
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 class AuthenticationScreen extends Component {
 
   onFBAuth(){
-    console.log("Facebook Login")
+    this.props.navigate({routeName: "Main"})
   }
 
   render() {
@@ -75,6 +75,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   login: (name) => dispatch(login(name)),
   logout: () => dispatch(logout()),
+  navigate: (route) => dispatch(navigate(route)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationScreen);

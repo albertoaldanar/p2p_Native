@@ -22,13 +22,14 @@ export function setRoom(room){
 export function setFilter(filter){
   return {
     type: SET_FILTER,
-    room
+    filter
   }
 }
 
 export function getRooms(){
-  return(dispatch) => {
-    return fetch(`${HOST}/api/v1/rooms`)
+  return(dispatch, getState) => {
+    const filter = getState().room.filter;
+    return fetch(`${HOST}/api/v1/rooms?address=${filter.address}&start_date=${filter.startDate}&end_date=${filter.endDate}}`)
       .then(res => res.json())
       .then(json => {
         console.log("Response", json);

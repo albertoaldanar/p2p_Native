@@ -11,8 +11,9 @@ import {
 } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import BookingButton from "../shared/BookingButton";
+import {goBack} from "../../actions/nav";
 
-import { login, logout } from '../../actions/user';
+import { setFilter, getRooms} from '../../actions/room';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +64,6 @@ class FilterModal extends Component {
     super(props);
     this.state = {
       address: props.filter.address,
-      pickerVisible: false,
       startDate: props.filter.startDate,
       endDate: props.filter.endDate
     }
@@ -72,7 +72,9 @@ class FilterModal extends Component {
 //Metodos de seleccino de fecha
 
   onSearch(){
-    console.log("This button will book")
+    this.props.setFilter(this.state);
+    this.props.goBack();
+    this.props.getRooms();
   }
 
   render() {
@@ -145,6 +147,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  setFilter: (filter)=> dispatch(setFilter(filter)),
+  getRooms: () => dispatch(getRooms()),
+  goBack: () => dispatch(goBack)
 
 });
 

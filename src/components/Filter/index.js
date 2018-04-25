@@ -10,6 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import DatePicker from 'react-native-datepicker'
+import BookingButton from "../shared/BookingButton";
 
 import { login, logout } from '../../actions/user';
 
@@ -47,7 +48,8 @@ const styles = StyleSheet.create({
   calendar: {
     flexDirection: "row",
     padding: 15,
-    flex: 1
+    flex: 1,
+    marginBottom: 20
   },
   firstCalendar:{
     marginRight: 30
@@ -60,24 +62,17 @@ class FilterModal extends Component {
   constructor(props){
     super(props);
     this.state = {
-      address: "",
+      address: props.filter.address,
       pickerVisible: false,
-      startDate: "",
-      endDate: ""
+      startDate: props.filter.startDate,
+      endDate: props.filter.endDate
     }
   }
 
 //Metodos de seleccino de fecha
-  onStartDatePress(){
-     this.setState({ pickerVisible: true });
-  }
 
-  hidePicker(){
-    this.setState({ pickerVisible: false });
-  }
-
-  onEndDatePress(){
-    console.log(this.state.date);
+  onSearch(){
+    console.log("This button will book")
   }
 
   render() {
@@ -132,13 +127,21 @@ class FilterModal extends Component {
             onDateChange={(date) => {this.setState({endDate: date})}}
           />
         </View>
+
+        <BookingButton
+          onPress = {()=> this.onSearch()}
+          backgroundColor = "#2F868E"
+          textColor = "#E2E2E2"
+          label = "Search"
+        >
+        </BookingButton>
       </ScrollView>
     );
   }
 }
 
 const mapStateToProps = state => ({
-
+  filter: state.room.filter
 });
 
 const mapDispatchToProps = dispatch => ({

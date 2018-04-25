@@ -3,6 +3,7 @@ import { normalizeRooms } from "../utils";
 import {normalizeRoom } from "../utils";
 export const SET_ROOMS = "SET_ROOMS";
 export const SET_ROOM = "SET_ROOM";
+export const SET_FILTER = "SET_FILTER";
 
 export function setRooms(rooms){
   return{
@@ -11,10 +12,16 @@ export function setRooms(rooms){
   }
 }
 
-
 export function setRoom(room){
   return {
     type: SET_ROOM,
+    room
+  }
+}
+
+export function setFilter(filter){
+  return {
+    type: SET_FILTER,
     room
   }
 }

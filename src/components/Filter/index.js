@@ -9,7 +9,7 @@ import {
   ScrollView,
   TouchableOpacity
 } from 'react-native';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import DatePicker from 'react-native-datepicker'
 
 import { login, logout } from '../../actions/user';
 
@@ -40,9 +40,17 @@ const styles = StyleSheet.create({
     flex: 1
   },
   datePickerText: {
-    fontSize: 20,
+    fontSize: 15,
     textAlign: "center",
     color: "#E2E2E2"
+  },
+  calendar: {
+    flexDirection: "row",
+    padding: 15,
+    flex: 1
+  },
+  firstCalendar:{
+    marginRight: 30
   }
 
 });
@@ -54,7 +62,8 @@ class FilterModal extends Component {
     this.state = {
       address: "",
       pickerVisible: false,
-      initialDate: new Date()
+      startDate: "",
+      endDate: ""
     }
   }
 
@@ -67,19 +76,8 @@ class FilterModal extends Component {
     this.setState({ pickerVisible: false });
   }
 
-
- setDate({date}){
-    this.setState({initialDate: {date}})
-    console.log(this.state.initialDate);
-  };
-
-   handleDatePicked = (date) => {
-    console.log('A date has been picked: ', date);
-  };
-
-
   onEndDatePress(){
-
+    console.log(this.state.date);
   }
 
   render() {
@@ -97,23 +95,43 @@ class FilterModal extends Component {
 
         <View style = {styles.datePicker}>
           <TouchableOpacity style = {styles.datePickerButton} onPress = {()=> this.onStartDatePress()}>
-            <Text style= {styles.datePickerText}> Start Date</Text>
+            <Text style= {styles.datePickerText}> {this.state.startDate || "-" }</Text>
           </TouchableOpacity>
 
           <Text style = {[styles.datePickerText, {flex: 1}]}> to </Text>
 
           <TouchableOpacity style = {styles.datePickerButton} onPress = {()=> this.onEndDatePress()}>
-            <Text style= {styles.datePickerText}> End Date</Text>
+            <Text style= {styles.datePickerText}> {this.state.endDate || "-" }</Text>
           </TouchableOpacity>
         </View>
 
-         <DateTimePicker
-          date= {new Date()}
-          mode ="date"
-          isVisible={this.state.pickerVisible}
-          onCancel={()=> this.hidePicker()}
-          onConfirm = { ()=> this.handleDatePicked(date)}
-        />
+        <View style = {styles.calendar}>
+          <DatePicker
+            style={[ styles.firstCalendar, {width: 150}]}
+            date={this.state.startDate}
+            mode="date"
+            placeholder="Start date"
+            format="YYYY-MM-DD"
+            minDate= {new Date()}
+            maxDate="2019-06-01"
+            confirmBtnText="Book"
+            cancelBtnText="Cancel"
+            onDateChange={(date) => {this.setState({startDate: date})}}
+          />
+
+          <DatePicker
+            style={{width: 150}}
+            date={this.state.endDate}
+            mode="date"
+            placeholder="End date"
+            format="YYYY-MM-DD"
+            minDate= {new Date()}
+            maxDate="2019-06-01"
+            confirmBtnText="Book"
+            cancelBtnText="Cancel"
+            onDateChange={(date) => {this.setState({endDate: date})}}
+          />
+        </View>
       </ScrollView>
     );
   }

@@ -35,7 +35,7 @@ class BookingModal extends Component {
   }
 
   onBooking(){
-
+    //Este metodo va a llamar al booking room
     const {bookRoom, room} = this.props;
     const startDate = this.state.startDate.format("YYYY-MM-DD")
     const endDate = this.state.endDate.format("YYYY-MM-DD")

@@ -32,10 +32,9 @@ export function getRooms(){
   return(dispatch, getState) => {
     const filter = getState().room.filter;
     return fetch(`${HOST}/api/v1/rooms?address=${filter.address}&start_date=${filter.startDate}&end_date=${filter.endDate}}`)
-      .then(res => res.json())
+      .then(response => response.json())
       .then(json => {
-        console.log("Response", json);
-
+        console.log("Response",json);
         if(json.is_success){
           dispatch(setRooms(normalizeRooms(json.rooms)));
         } else{
@@ -91,6 +90,3 @@ export function bookRoom(roomId, startDate, endDate){
       .catch(e => alert(e))
     }
   }
-
-
-

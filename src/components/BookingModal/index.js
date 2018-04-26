@@ -34,6 +34,10 @@ class BookingModal extends Component {
     }
   }
 
+  componentWillMount(){
+    console.log(this.props.room);
+  }
+
   onBooking(){
     //Este metodo va a llamar al booking room
     const {bookRoom, room} = this.props;
@@ -74,8 +78,6 @@ class BookingModal extends Component {
           disabled = {!this.state.startDate}
           >
         </BookingButton>
-
-
       </ScrollView>
     );
   }

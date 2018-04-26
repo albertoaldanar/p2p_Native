@@ -63,9 +63,9 @@ class FilterModal extends Component {
   constructor(props){
     super(props);
     this.state = {
-      address: props.filter.address,
-      startDate: props.filter.startDate,
-      endDate: props.filter.endDate
+      address: "",
+      startDate: "",
+      endDate: ""
     }
   }
 

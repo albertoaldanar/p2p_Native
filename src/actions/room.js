@@ -1,6 +1,8 @@
 import {HOST} from "../constants";
 import { normalizeRooms } from "../utils";
 import {normalizeRoom } from "../utils";
+import {navigate} from "./nav";
+
 export const SET_ROOMS = "SET_ROOMS";
 export const SET_ROOM = "SET_ROOM";
 export const SET_FILTER = "SET_FILTER";
@@ -60,5 +62,35 @@ export function getRoom(roomId){
     .catch(e => alert("Ha ocurrido un error en la petición de la API"));
   }
 }
+
+export function bookRoom(roomId, startDate, endDate){
+  return (dispatch, getState) => {
+    const accessToken = getState().user.accessToken;
+    return fetch(`${HOST}/api/v1/reservations`,{
+      method: "POST",
+      body: JSON.stringify({
+        room_id: roomId,
+        start_date: startDate,
+        end_date: endDate,
+        access_token: accessToken
+      }),
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        if (json.is_success){
+          alert("Booked successfully");
+          dispatch(navigate({routeName: "Explore"}));
+        } else {
+          alert(json.error)
+        }
+      })
+      .catch(e => alert(e))
+    }
+  }
+
 
 

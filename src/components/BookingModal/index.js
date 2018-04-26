@@ -10,6 +10,7 @@ import {
 import Dates from "react-native-dates";
 import moment from "moment";
 import BookingButton from "../shared/BookingButton";
+import {bookRoom} from "../../actions/room";
 
 
 const styles = StyleSheet.create({
@@ -34,7 +35,12 @@ class BookingModal extends Component {
   }
 
   onBooking(){
-    console.log("Booking")
+
+    const {bookRoom, room} = this.props;
+    const startDate = this.state.startDate.format("YYYY-MM-DD")
+    const endDate = this.state.endDate.format("YYYY-MM-DD")
+
+    bookRoom(room.id, startDate, endDate);
   }
 
   render() {
@@ -80,7 +86,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  bookRoom: (roomId, startDate, endDate) => dispatch(bookRoom(roomId, startDate, endDate)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookingModal);

@@ -13,8 +13,6 @@ export function normalizeRooms(rooms){
       summary: room.summary || "",
       accommodate: room.accommodate || "",
       bathRoom: room.bath_room || "",
-      unavaliableDates: room.unavaliableDates || "",
-
     }
   })
 }
@@ -29,6 +27,7 @@ export function normalizeRoom(room){
     summary: room.summary || "",
     bathRoom: room.bath_room || "",
     price: room.price || "",
+    unavailableDates: room.unavailable_dates || "",
     address: room.address || "",
     host: room.host ? {
         email: room.host.email || "",

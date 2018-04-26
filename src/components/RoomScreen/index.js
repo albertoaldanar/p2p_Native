@@ -13,6 +13,7 @@ import {
 import {getRoom} from "../../actions/room";
 import Icon from "react-native-vector-icons/Ionicons";
 import BookingButton from "../shared/BookingButton";
+import {navigate} from "../../actions/nav";
 
 const styles = StyleSheet.create({
   container: {
@@ -73,6 +74,10 @@ class RoomScreen extends Component {
     this.props.getRoom(this.props.navigation.state.params.item.id);
   }
 
+  onBooking(){
+    this.props.navigate({routeName: "Booking"})
+  }
+
   render() {
     const room = this.props.room;
     const item = this.props.navigation.state.params.item
@@ -119,7 +124,7 @@ class RoomScreen extends Component {
           </Text>
 
         <BookingButton
-          onPress = { () => {alert("Booking Button")}}
+          onPress = { () => {this.onBooking()}}
           label = "Book this room"
           backgroundColor= "#FF5A60"
           textColor = "white"
@@ -135,7 +140,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getRoom: (roomId) => dispatch(getRoom(roomId))
+  getRoom: (roomId) => dispatch(getRoom(roomId)),
+  navigate: (route) => dispatch(navigate(route))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomScreen);

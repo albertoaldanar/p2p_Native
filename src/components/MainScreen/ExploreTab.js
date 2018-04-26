@@ -11,7 +11,6 @@ import {
   View
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
-
 import { navigate } from '../../actions/nav';
 import {getRooms} from "../../actions/room";
 
@@ -85,14 +84,16 @@ class ExploreTab extends Component {
   }
 
   render() {
-    const {rooms} = this.props;
+    const {rooms, filter} = this.props;
     return (
 
     <View style = {styles.container}>
       <View style = {styles.filter}>
         <TouchableOpacity style = {styles.filterButton} onPress = {() => this.onFilterPress()}>
           <Icon size = {25} name = "ios-search-outline" color = "white"/>
-          <Text style = {styles.filterText}> Anywhere - Anytime</Text>
+          <Text style = {styles.filterText}>
+            {`${filter.address || "Anywhere"} - ${filter.startDate && filter.endDate ? `${filter.startDate} to ${filter.endDate}` : 'Anytime'}`}
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -114,7 +115,8 @@ class ExploreTab extends Component {
 }
 
 const mapStateToProps = state => ({
-  rooms: state.room.rooms
+  rooms: state.room.rooms,
+  filter: state.room.filter
 });
 
 const mapDispatchToProps = dispatch => ({

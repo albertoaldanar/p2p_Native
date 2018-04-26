@@ -149,7 +149,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setFilter: (filter)=> dispatch(setFilter(filter)),
   getRooms: () => dispatch(getRooms()),
-  goBack: () => dispatch(goBack)
+  goBack: () => dispatch(goBack())
 
 });
 

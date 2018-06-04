@@ -68,7 +68,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 class ExploreTab extends Component {
 
   componentWillMount(){

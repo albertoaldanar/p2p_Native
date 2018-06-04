@@ -5,10 +5,12 @@ import {
   StyleSheet,
   View,
   Text,
+  FlatList
   Image,
   Dimensions,
   ScrollView
 } from 'react-native';
+
 
 import {getRoom} from "../../actions/room";
 import Icon from "react-native-vector-icons/Ionicons";
